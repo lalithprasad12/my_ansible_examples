@@ -1,0 +1,24 @@
+---
+- hosts: all
+  tasks:
+  - name: Creating a user
+    user: name={{ item }} state=present
+    with_items:
+     - sam
+     - john
+    tags: usertag
+  - name: Creating a file
+    file: name={{ item }} state=touch
+    with_items:
+     - /tmp/file1
+     - /tmp/file2
+    tags: filetag
+  - name: Creating a package
+    yum: name={{ item }} state=installed
+    with_items:
+     - git
+     - java
+    when: ansible_os_family == "Ubuntu"
+    tags: usertag
+
+

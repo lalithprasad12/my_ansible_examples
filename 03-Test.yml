@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: To check the file
+    command: ls -l /tmp/file1
+    register: lsoutput
+  - debug:
+      var=lsoutput.stdout_lines

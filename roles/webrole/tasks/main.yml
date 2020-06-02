@@ -1,0 +1,6 @@
+---
+# tasks file for webrole
+- name: Install httpd
+  yum: name=httpd state=installed
+- name: Copy the template
+  template: src=httpd.conf dest=/etc/httpd/conf/httpd.conf

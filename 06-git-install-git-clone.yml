@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: Installing git
+    yum: name=git state=installed
+  - git:
+      repo: https://github.com/ansible/ansible-examples.git
+      dest: /tmp/git

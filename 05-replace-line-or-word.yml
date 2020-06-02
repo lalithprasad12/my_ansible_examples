@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: Replace a line
+    replace:
+      path: /tmp/file1
+      regexp: 'is the'
+      replace: "is the new"

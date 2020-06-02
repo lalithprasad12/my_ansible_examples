@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    username: mark
+  tasks:
+  - name: Check whether there's your user on the machine
+    action: shell /usr/bin/getent passwd {{ username }} | /usr/bin/wc -l | tr -d ''      
+    register: user_exist
+  - debug:
+      var=user_exist
+  - name: Creating an user, If the user does not exits
+    user: name={{ username }} state=present
+    when:
+      - user_exist['stdout'] == "0"
