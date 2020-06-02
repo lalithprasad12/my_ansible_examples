@@ -1,0 +1,11 @@
+---
+- hosts: dev
+  tasks:
+  - name: creating a user
+    user: name=lalith state=present
+  - name: Creating a file
+    file: name=/tmp/playbook state=touch
+  - name: Creating a directory
+    file: name=/tmp/test state=directory
+
+
