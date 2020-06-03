@@ -1,0 +1,28 @@
+---
+- hosts: all
+  vars:
+    package: docker
+  tasks:
+  - name: Check the version of the package
+    command: "sh {{package}} --version"
+    register: mycmd
+  - debug:
+      var=mycmd.stdout_lines
+
+
+
+
+
+
+
+
+
+
+#  - name: Install the latest version
+#    package:
+#      name: "{{ package }}"
+#      state: present
+#      state: latest
+#    register: lsoutput
+#  - debug:
+#      var=lsoutput.results

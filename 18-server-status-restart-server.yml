@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+  - name: Check the service status of netconsole
+    service_facts:
+  - debug:
+      var: ansible_facts.services.netconsole.state
+
+
+
+  - name: restart system to reboot to newest kernel
+    shell: "sleep 5 && reboot"
+    async: 1
+    poll: 0
+    when: ansible_facts.services.netconsole.state == "stopped"
+
