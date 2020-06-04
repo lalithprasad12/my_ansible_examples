@@ -1,25 +1,27 @@
 ---
-- hosts: all
+#has to use /bin/python2 for the intrpretor becasue of boto
+- hosts: localhost
   vars:
-    ansible_python_interpreter: "/usr/bin/python3"
+    ansible_python_interpreter: "/bin/python2"
   tasks:
   - name: Create an empty bucket
     aws_s3:
-      bucket: mybucket_acloudguru_113355
+      bucket: mybucketacloudguru113355
       mode: create
       permission: public-read
   - name: Simple PUT operation
     aws_s3:
-      bucket: mybucket_acloudguru_113355
+      bucket: mybucketacloudguru113355
       object: /my/desired/key.txt
       src: /tmp/file1
       mode: put
   - ec2:
-      key_name: /etc/ansible/mykey
+      key_name: OregonKP
       instance_type: t2.micro
       image: ami-0e34e7b9ca0ace12d
+      region: us-west-2
       wait: yes
-      group: webserver
+#      group: ["http_server_sg"]
       count: 1
       vpc_subnet_id: subnet-03a9fc3fdfdbb5efc
       assign_public_ip: yes

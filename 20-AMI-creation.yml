@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+#Creating an AMI from the centos machine which is running now.
+  - ec2_ami:
+      instance_id: i-073271f8e711bcef2
+      wait: no
+      name: newtest
+      tags:
+        Name: newtest
+        Service: TestService

@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  vars:
+    ansible_python_interpreter: "/bin/python2"
+
+  tasks:
+#Creating an snapshot from the centos machine which is running now.
+  - ec2_snapshot:
+      volume_id: vol-0154bfe3fb2aa867e
+      description: snapshot of /data from DB123 taken 2013/11/28 12:18:32
+      region: us-west-2
